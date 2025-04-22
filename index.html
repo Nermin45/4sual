@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        img { max-width: 200px; margin: 10px 0; }
+      </style>
+</head>
+<body>
+    
+    <h1>Ölkə Məlumatı</h1>
+    <p><strong>Adı:</strong> <span id="name"></span></p>
+    <p><strong>Paytaxtı:</strong> <span id="capital"></span></p>
+    <p><strong>Sahəsi:</strong> <span id="area"></span></p>
+    <p><strong>Bayraq:</strong><br><img id="flag" width="100"></p>
+    <p><strong>Gerb:</strong><br><img id="coat-of-arms" width="100"></p>
+
+
+
+
+
+
+    <script>
+     fetch('https://restcountries.com/v3.1/name/azerbaijan')
+.then(response => response.json())
+.then(data => {
+  const country = data[0];
+
+
+  document.getElementById('name').textContent = country.name.common;
+  document.getElementById('capital').textContent = country.capital[0];
+  document.getElementById('area').textContent = country.area;
+  document.getElementById('flag').src = country.flags.svg;
+  document.getElementById('coat-of-arms').src = country.coatOfArms.svg;
+  
+})
+.catch(error => {
+  console.error('Xəta baş verdi:', error);
+});
+    </script>
+</body>
+</html>
